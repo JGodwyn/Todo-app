@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %} Signup {% endblock title %}
+{% block navbarname %} Todo {% endblock navbarname %}
+
+{% block content %}
+<div style="text-align:center">
+    <h1 class="mt-4"> Sign up </h1>
+    <h6> Start creating tasks </h6>
+    <div class="row align-items-center justify-content-center mt-4">
+            <form action="{% url 'todo:signed_up' %}" method="POST">
+                {% csrf_token %}
+                <div class="col-sm-12 mb-2 my-auto-mb-4">
+                    <input type="text" name = "Username" placeholder= "Your name" >
+                </div>
+                <div class="col-sm-12 mt-4 my-auto">
+                    <input type="password" name = "Password" placeholder= "Password" >
+                </div>
+
+                    <button class="btn btn-primary mb-2 mt-4" type="submit" name="action"> Go </button>
+            </form>
+    </div>
+
+    <p class="mt-4"><a href="/"> Back to home </a> </p>
+</div>
+{% endblock content %}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %} Dashboard {% endblock title %}
+{% block navbarname %} Todo {% endblock navbarname %}
+
+{% block content %}
+<h1 class="mt-4" style="text-align:center">
+    {{ user_object.Username }}
+</h1>
+
+<div class="row mt-4">
+    <div class="col">
+        <h2> Add task </h2>
+        <form class="form-inline" action="{% url 'todo:add_task' user_object.id %}" method="POST">
+        {% csrf_token %}
+          <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="task_name" placeholder="Name">
+          <input type="datetime-local" class="form-control mb-2 mr-sm-2" id="when" name="task_date">
+            <button type="submit" class="btn btn-primary mb-2">Add</button>
+        </form>
+    </div>
+</div>
+
+
+{% if user_object.tasks.all %}
+        <div class="row mt-4">
+            <div class="col">
+                {% for task in tasks %}
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-action mt-4"><b> {{ task.task }}  </b>
+                        <div class = 'float-right'>
+                            <form class= "form-inline" action="{% url 'todo:remove_task' user_object.id %}" method="POST">
+                                <i class="mr-2">To be done</i> <b>{{ task.time_to_do }}</b>
+                                {% csrf_token %}
+                                <button name = line.id type="submit" class="btn btn-danger ml-4" value= {{task.id}} >Delete</button>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+        {% else %}
+        <h5 class="mt-5" style="text-align:center">
+            You have no tasks scheduled!
+        </h5>
+        {% endif %}
+
+
+<p class="mt-4" style="text-align: center"><a href="/"> Logout</a> </p>
+
+
+{% endblock content %}
+

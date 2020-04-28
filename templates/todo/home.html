@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %} Home {% endblock title %}
+{% block navbarname %} Todo {% endblock navbarname %}
+{% block content %}
+
+
+<div style="text-align: center">
+    <h1 class="mt-4"> Add tasks</h1>
+    <h5 class="mt-4"> View them</h5>
+    <h5> Delete them</h5>
+
+    <div class="row align-items-center justify-content-center mt-2">
+        <div class="col-sm-12 mb-2 my-auto-mb-4">
+            <a href="{% url 'todo:login' %}"> <button class="btn btn-primary mb-4 mt-4">Login </button> </a>
+        </div>
+        <div class="col-sm-12 mt-4 my-auto">
+            <a href="{% url 'todo:signup' %}"> <button class="btn btn-primary mb-2 mt" type="submit">Signup </button> </a>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
